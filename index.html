@@ -56,17 +56,15 @@ video {
     object-fit: contain;
   }
 }
-    .video-container {
-  width: 80vw;
+  .video-container {
+  width: 85vw;
   max-width: 900px;
-  aspect-ratio: 16 / 9;
-  margin: auto;
-  margin-top: 5vh;
-  border-radius: 16px;
-  overflow: hidden;
-  background: black;
-  display: none;
-}
+  margin: 5vh auto;
+  background: transparent;
+  display: none;           
+  border: 2px solid white; 
+  border-radius: 12px;    
+  overflow: hidden;         
 
 #vid {
   width: 100%;
@@ -79,7 +77,7 @@ video {
 
 <div id="start">...</div>
 
-<div class="video-container">
+<div class="video-container" id="videoContainer">
   <video id="vid" playsinline muted>
     <source src="video.mp4" type="video/mp4">
   </video>
@@ -88,17 +86,19 @@ video {
 <script>
 const start = document.getElementById("start");
 const video = document.getElementById("vid");
+const container = document.getElementById("videoContainer");
 
 start.addEventListener("click", () => {
-    start.style.display = "none";
-    document.querySelector(".video-container").style.display = "block";
-    video.currentTime = 0;
-    video.muted = false;
-    video.play();
+  start.style.display = "none";
+  container.style.display = "block";
+  video.currentTime = 0;
+  video.muted = false;
+  video.play();
 });
 </script>
 
 </body>
 
 </html>
+
 
