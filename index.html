@@ -56,6 +56,22 @@ video {
     object-fit: contain;
   }
 }
+    .video-container {
+  width: 80vw;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  margin: auto;
+  margin-top: 5vh;
+  border-radius: 16px;
+  overflow: hidden;
+  background: black;
+  display: none;
+}
+
+#vid {
+  width: 100%;
+  height: 100%;
+}
 </style>
 </head>
 
@@ -63,9 +79,11 @@ video {
 
 <div id="start">...</div>
 
-<video id="vid" playsinline>
+<div class="video-container">
+  <video id="vid" playsinline muted>
     <source src="video.mp4" type="video/mp4">
-</video>
+  </video>
+</div>
 
 <script>
 const start = document.getElementById("start");
@@ -73,7 +91,7 @@ const video = document.getElementById("vid");
 
 start.addEventListener("click", () => {
     start.style.display = "none";
-    video.style.display = "block";
+    document.querySelector(".video-container").style.display = "block";
     video.currentTime = 0;
     video.muted = false;
     video.play();
@@ -83,3 +101,4 @@ start.addEventListener("click", () => {
 </body>
 
 </html>
+
