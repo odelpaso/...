@@ -11,14 +11,14 @@ html, body {
     width: 100%;
     height: 100%;
     background: black;
+    display: flex;
+    justify-content: center; 
+    align-items: center;  
     overflow: hidden;
+    flex-direction: column;
 }
 
 #start {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     color: white;
     font-family: Arial, sans-serif;
     font-size: 26px;
@@ -35,33 +35,37 @@ html, body {
     color: black;
 }
 
-/* CONTENEUR VIDEO */
+
 .video-container {
     width: 85vw;
     max-width: 900px;
-    margin: 5vh auto;
     border: 2px solid white;
     border-radius: 12px;
     overflow: hidden;
     display: none;
     background: black;
+    margin-top: 20px; 
 }
 
-/* VIDEO */
+/* Vidéo */
 #vid {
     width: 100%;
     height: auto;
 }
 
-/* 📱 Téléphone */
+/* 📱 Mobile */
 @media (max-width: 768px) {
-  .video-container {
-    width: 92vw;
-    margin-top: 4vh;
-  }
-  #vid {
-    object-fit: contain;
-  }
+    #start {
+        font-size: 32px;  
+        padding: 20px 30px;
+    }
+    .video-container {
+        width: 92vw;
+        margin-top: 20px; 
+    }
+    #vid {
+        object-fit: contain;
+    }
 }
 </style>
 </head>
@@ -93,3 +97,4 @@ start.addEventListener("click", () => {
 
 </body>
 </html>
+
