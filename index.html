@@ -77,11 +77,9 @@ video {
 
 <div id="start">...</div>
 
-<div class="video-container" id="videoContainer">
-  <video id="vid" playsinline muted>
-    <source src="video.mp4" type="video/mp4">
-  </video>
-</div>
+<video id="vid" playsinline>
+  <source src="video.mp4" type="video/mp4">
+</video>
 
 <script>
 const start = document.getElementById("start");
@@ -100,5 +98,6 @@ start.addEventListener("click", () => {
 </body>
 
 </html>
+
 
 
