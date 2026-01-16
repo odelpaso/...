@@ -10,35 +10,40 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
+    background: black;
+}
+
+/* 📺 Vidéo de fond */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    filter: contrast(1.2) brightness(0.6);
 }
 
 /* 🔘 Bouton */
 #start {
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 64px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     cursor: pointer;
-    text-align: center;
 
-    border: 3px solid white;
-    padding: 35px 45px;
-    border-radius: 12px;
-
-    transition: all 0.2s ease;
+    font-size: 120px;
+    user-select: none;
+    transition: transform 0.2s ease;
 }
 
 #start:hover {
-    background: white;
-    color: black;
-    transform: scale(1.05);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* 🎥 Vidéo plein écran */
+/* 🎥 Vidéo jumpscare */
 #vid {
     position: fixed;
     top: 0;
@@ -53,8 +58,7 @@ html, body {
 /* 📱 Mobile */
 @media (max-width: 768px) {
     #start {
-        font-size: 80px;
-        padding: 45px 55px;
+        font-size: 150px;
     }
 }
 </style>
@@ -62,8 +66,15 @@ html, body {
 
 <body>
 
+<!-- Vidéo TV grésillement -->
+<video id="bg-video" autoplay loop muted playsinline>
+    <source src="tv.mp4" type="video/mp4">
+</video>
+
+<!-- Bouton -->
 <div id="start">🚪</div>
 
+<!-- Vidéo jumpscare -->
 <video id="vid" playsinline muted>
     <source src="video.mp4" type="video/mp4">
 </video>
@@ -71,11 +82,13 @@ html, body {
 <script>
 const start = document.getElementById("start");
 const video = document.getElementById("vid");
+const bg = document.getElementById("bg-video");
 
 start.addEventListener("click", () => {
     start.style.display = "none";
-    video.style.display = "block";
+    bg.style.display = "none";
 
+    video.style.display = "block";
     video.currentTime = 0;
     video.muted = false;
     video.play();
