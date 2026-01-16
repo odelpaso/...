@@ -14,7 +14,7 @@ html, body {
     background: black;
 }
 
-/* 📺 Conteneur vidéo de fond */
+/* 📺 BACKGROUND */
 #bg-container {
     position: fixed;
     top: 0;
@@ -25,15 +25,16 @@ html, body {
     overflow: hidden;
 }
 
-/* 📺 Vidéo grésillement */
+/* 📺 VIDEO TV */
 #bg-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: contrast(1.2) brightness(0.6);
+    filter: contrast(1.25) brightness(0.6);
+    animation: slowZoom 25s linear infinite;
 }
 
-/* 🔘 Bouton */
+/* 🔘 BOUTON */
 #start {
     position: fixed;
     top: 50%;
@@ -41,10 +42,11 @@ html, body {
     transform: translate(-50%, -50%);
     cursor: pointer;
 
-    font-size: 120px;
+    font-size: 140px;
     user-select: none;
     z-index: 2;
 
+    animation: flicker 3s infinite;
     transition: transform 0.2s ease;
 }
 
@@ -52,7 +54,7 @@ html, body {
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* 🎥 Vidéo jumpscare */
+/* 👹 JUMPSCARE */
 #vid {
     position: fixed;
     top: 0;
@@ -65,23 +67,22 @@ html, body {
     z-index: 3;
 }
 
-/* 📱 Mobile */
+/* 📱 MOBILE */
 @media (max-width: 768px) {
     #start {
-        font-size: 150px;
-    }
-}
-    @keyframes slowZoom {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.08);
+        font-size: 170px;
     }
 }
 
-#bg-video {
-    animation: slowZoom 20s linear infinite;
+/* 🎞️ ANIMATIONS */
+@keyframes slowZoom {
+    from { transform: scale(1); }
+    to   { transform: scale(1.1); }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
 }
 </style>
 </head>
@@ -90,7 +91,7 @@ html, body {
 
 <!-- 📺 BACKGROUND -->
 <div id="bg-container">
-    <video id="bg-video" autoplay loop muted playsinline>
+    <video id="bg-video" muted loop playsinline>
         <source src="tv.mp4" type="video/mp4">
     </video>
 </div>
@@ -109,15 +110,16 @@ const video = document.getElementById("vid");
 const bgVideo = document.getElementById("bg-video");
 const bgContainer = document.getElementById("bg-container");
 
-// Lancer le fond après interaction
+// Lancer la TV après première interaction
 window.addEventListener("click", () => {
     bgVideo.play().catch(() => {});
 }, { once: true });
 
+// Clic sur la porte
 start.addEventListener("click", () => {
     start.style.display = "none";
 
-    // faux lag
+    // faux bug psychologique
     setTimeout(() => {
         bgContainer.style.display = "none";
 
@@ -127,31 +129,7 @@ start.addEventListener("click", () => {
         video.play();
     }, 300);
 });
-// Forcer le lancement du fond après interaction
-window.addEventListener("click", () => {
-    bgVideo.play().catch(() => {});
-}, { once: true });
-
-start.addEventListener("click", () => {
-    start.style.display = "none";
-    bgContainer.style.display = "none";
-
-    video.style.display = "block";
-    video.currentTime = 0;
-    video.muted = false;
-    video.play();
-});
-    @keyframes flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.85; }
-}
-
-#start {
-    animation: flicker 3s infinite;
-}
 </script>
 
 </body>
 </html>
-
-
