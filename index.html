@@ -12,59 +12,49 @@ html, body {
     height: 100%;
     background: black;
     display: flex;
-    justify-content: center; 
-    align-items: center;  
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-    flex-direction: column;
 }
 
+/* 🔘 Bouton */
 #start {
     color: white;
     font-family: Arial, sans-serif;
-    font-size: 26px;
+    font-size: 64px;
     cursor: pointer;
     text-align: center;
 
-    border: 2px solid white;
-    padding: 15px 25px;
-    border-radius: 6px;
+    border: 3px solid white;
+    padding: 35px 45px;
+    border-radius: 12px;
+
+    transition: all 0.2s ease;
 }
 
 #start:hover {
     background: white;
     color: black;
+    transform: scale(1.05);
 }
 
-
-.video-container {
-    width: 85vw;
-    max-width: 900px;
-    border: 2px solid white;
-    border-radius: 12px;
-    overflow: hidden;
+/* 🎥 Vidéo plein écran */
+#vid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
     display: none;
     background: black;
-    margin-top: 20px; 
-}
-
-/* Vidéo */
-#vid {
-    width: 100%;
-    height: auto;
 }
 
 /* 📱 Mobile */
 @media (max-width: 768px) {
     #start {
-        font-size: 32px;  
-        padding: 20px 30px;
-    }
-    .video-container {
-        width: 92vw;
-        margin-top: 20px; 
-    }
-    #vid {
-        object-fit: contain;
+        font-size: 80px;
+        padding: 45px 55px;
     }
 }
 </style>
@@ -74,21 +64,18 @@ html, body {
 
 <div id="start">🚪</div>
 
-<!-- Conteneur de la vidéo -->
-<div class="video-container" id="videoContainer">
-    <video id="vid" playsinline muted>
-        <source src="video.mp4" type="video/mp4">
-    </video>
-</div>
+<video id="vid" playsinline muted>
+    <source src="video.mp4" type="video/mp4">
+</video>
 
 <script>
 const start = document.getElementById("start");
 const video = document.getElementById("vid");
-const container = document.getElementById("videoContainer");
 
 start.addEventListener("click", () => {
     start.style.display = "none";
-    container.style.display = "block"; // affiche le cadre
+    video.style.display = "block";
+
     video.currentTime = 0;
     video.muted = false;
     video.play();
@@ -97,6 +84,3 @@ start.addEventListener("click", () => {
 
 </body>
 </html>
-
-
-
