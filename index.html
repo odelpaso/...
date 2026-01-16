@@ -14,21 +14,28 @@ html, body {
     background: black;
 }
 
-/* 📺 Vidéo de fond */
-#bg-video {
+/* 📺 Conteneur vidéo de fond */
+#bg-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* 📺 Vidéo grésillement */
+#bg-video {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    z-index: -1;
     filter: contrast(1.2) brightness(0.6);
 }
 
 /* 🔘 Bouton */
 #start {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -36,6 +43,8 @@ html, body {
 
     font-size: 120px;
     user-select: none;
+    z-index: 2;
+
     transition: transform 0.2s ease;
 }
 
@@ -53,6 +62,7 @@ html, body {
     object-fit: cover;
     display: none;
     background: black;
+    z-index: 3;
 }
 
 /* 📱 Mobile */
@@ -66,15 +76,17 @@ html, body {
 
 <body>
 
-<!-- Vidéo TV grésillement -->
-<video id="bg-video" autoplay loop muted playsinline>
-    <source src="tv.mp4" type="video/mp4">
-</video>
+<!-- 📺 BACKGROUND -->
+<div id="bg-container">
+    <video id="bg-video" autoplay loop muted playsinline>
+        <source src="tv.mp4" type="video/mp4">
+    </video>
+</div>
 
-<!-- Bouton -->
+<!-- 🚪 BOUTON -->
 <div id="start">🚪</div>
 
-<!-- Vidéo jumpscare -->
+<!-- 👹 JUMPSCARE -->
 <video id="vid" playsinline muted>
     <source src="video.mp4" type="video/mp4">
 </video>
@@ -82,11 +94,11 @@ html, body {
 <script>
 const start = document.getElementById("start");
 const video = document.getElementById("vid");
-const bg = document.getElementById("bg-video");
+const bgContainer = document.getElementById("bg-container");
 
 start.addEventListener("click", () => {
     start.style.display = "none";
-    bg.style.display = "none";
+    bgContainer.style.display = "none";
 
     video.style.display = "block";
     video.currentTime = 0;
