@@ -94,7 +94,13 @@ html, body {
 <script>
 const start = document.getElementById("start");
 const video = document.getElementById("vid");
+const bgVideo = document.getElementById("bg-video");
 const bgContainer = document.getElementById("bg-container");
+
+// Forcer le lancement du fond après interaction
+window.addEventListener("click", () => {
+    bgVideo.play().catch(() => {});
+}, { once: true });
 
 start.addEventListener("click", () => {
     start.style.display = "none";
@@ -109,3 +115,4 @@ start.addEventListener("click", () => {
 
 </body>
 </html>
+
