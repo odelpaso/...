@@ -14,7 +14,6 @@ html, body {
     background: black;
 }
 
-/* 📺 Conteneur vidéo de fond */
 #bg-container {
     position: fixed;
     top: 0;
@@ -25,7 +24,6 @@ html, body {
     overflow: hidden;
 }
 
-/* 📺 Vidéo grésillement */
 #bg-video {
     width: 100%;
     height: 100%;
@@ -33,7 +31,7 @@ html, body {
     filter: contrast(1.2) brightness(0.6);
 }
 
-/* 🔘 Bouton */
+
 #start {
     position: fixed;
     top: 50%;
@@ -52,7 +50,7 @@ html, body {
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* 🎥 Vidéo jumpscare */
+
 #vid {
     position: fixed;
     top: 0;
@@ -65,7 +63,7 @@ html, body {
     z-index: 3;
 }
 
-/* 📱 Mobile */
+
 @media (max-width: 768px) {
     #start {
         font-size: 150px;
@@ -76,17 +74,16 @@ html, body {
 
 <body>
 
-<!-- 📺 BACKGROUND -->
 <div id="bg-container">
     <video id="bg-video" autoplay loop muted playsinline>
         <source src="tv.mp4" type="video/mp4">
     </video>
 </div>
 
-<!-- 🚪 BOUTON -->
+
 <div id="start">🚪</div>
 
-<!-- 👹 JUMPSCARE -->
+
 <video id="vid" playsinline muted>
     <source src="video.mp4" type="video/mp4">
 </video>
@@ -97,7 +94,7 @@ const video = document.getElementById("vid");
 const bgVideo = document.getElementById("bg-video");
 const bgContainer = document.getElementById("bg-container");
 
-// Forcer le lancement du fond après interaction
+
 window.addEventListener("click", () => {
     bgVideo.play().catch(() => {});
 }, { once: true });
@@ -115,3 +112,4 @@ start.addEventListener("click", () => {
 
 </body>
 </html>
+
